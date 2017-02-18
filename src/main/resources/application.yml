@@ -3,7 +3,7 @@ info:
 server:
   port: 3003
 management:
-  conext_path: /admin
+  context_path: /admin
   security:
     enabled: false
 zuul:
@@ -21,13 +21,13 @@ zuul:
     health:
       sensitive: false
 eureka:
-    hostname: ${vcap.application.uris[0]}
+    hostname: localhost
     instance:
       instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
       statusPageUrlPath: ${management.context-path}/info
       healthCheckUrlPath: ${management.context-path}/health
-      statusPageUrl: http://${eureka.hostname}:${server.port}/info
-      healthCheckUrl: http://${eureka.hostname}:${server.port}/health
+      statusPageUrl: http://${eureka.hostname}:${server.port}/admin/info
+      healthCheckUrl: http://${eureka.hostname}:${server.port}/admin/health
       homePageUrl: http://${eureka.hostname}:${server.port}/
     client:
       serviceUrl:
