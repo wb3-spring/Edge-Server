@@ -31,7 +31,7 @@ eureka:
       homePageUrl: http://${eureka.hostname}:${server.port}/
     client:
       serviceUrl:
-        defaultZone: http://service-discovery:3002/eureka/
+        defaultZone: http://microservice-discovery:3002/eureka/
       healthcheck:
         enabled: true
       registerWithEureka: true
