@@ -1,0 +1,50 @@
+info:
+  component: WB3 Zuul Edge Server
+server:
+  port: 3003
+management:
+  conext_path: /admin
+  security:
+    enabled: false
+zuul:
+  ignoredService: '*'
+  routes:
+    api:
+      path: /api/**
+    sandbox:
+      path: /sandbox-api/**
+  endpoints:
+    restart:
+      enbale: true
+    shutdown:
+      enable: true
+    health:
+      sensitive: false
+eureka:
+    hostname: ${vcap.application.uris[0]}
+    instance:
+      instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+      statusPageUrlPath: ${management.context-path}/info
+      healthCheckUrlPath: ${management.context-path}/health
+      statusPageUrl: http://${eureka.hostname}:${server.port}/info
+      healthCheckUrl: http://${eureka.hostname}:${server.port}/health
+      homePageUrl: http://${eureka.hostname}:${server.port}/
+    client:
+      serviceUrl:
+        defaultZone: http://localhost:3002/eureka/
+      healthcheck:
+        enabled: true
+      registerWithEureka: true
+      fetchRegistry: true
+      registry-fetch-interval-seconds: 5
+spring:
+  cloud:
+    consul:
+      discovery:
+        instanceId: ${eureka.instance.instanceId}
+        healthCheckPath: ${eureka.instance.healthCheckUrlPath}
+        tags: Zuul
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: INFO

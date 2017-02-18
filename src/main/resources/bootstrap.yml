@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: wb3-edgeserver
+  profiles:
+    active: default
+  cloud:
+    config:
+      uri: http://localhost:3000
+    consul:
+      host: localhost
+      port: 3001
+      config:
+        enabled: true
