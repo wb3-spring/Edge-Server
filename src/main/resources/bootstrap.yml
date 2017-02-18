@@ -7,7 +7,7 @@ spring:
     config:
       uri: http://config-server:3000
     consul:
-      host: localhost
+      host: service-discovery
       port: 3001
       config:
         enabled: true
