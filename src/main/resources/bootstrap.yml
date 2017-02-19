@@ -5,9 +5,9 @@ spring:
     active: default
   cloud:
     config:
-      uri: http://config-server:3000
+      uri: http://10.0.1.101:3000
     consul:
-      host: service-discovery
+      host: 10.0.1.101
       port: 3001
       config:
         enabled: true

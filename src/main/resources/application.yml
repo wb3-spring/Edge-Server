@@ -21,17 +21,17 @@ zuul:
     health:
       sensitive: false
 eureka:
-    hostname: localhost
+    hostname: 10.0.1.101
     instance:
-      instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
       statusPageUrlPath: ${management.context-path}/info
       healthCheckUrlPath: ${management.context-path}/health
-      statusPageUrl: http://${eureka.hostname}:${server.port}/admin/info
-      healthCheckUrl: http://${eureka.hostname}:${server.port}/admin/health
+      statusPageUrl: http://${eureka.hostname}:${server.port}/info
+      healthCheckUrl: http://${eureka.hostname}:${server.port}/health
       homePageUrl: http://${eureka.hostname}:${server.port}/
     client:
       serviceUrl:
-        defaultZone: http://microservice-discovery:3002/eureka/
+        defaultZone: http://10.0.1.101:3002/eureka/
       healthcheck:
         enabled: true
       registerWithEureka: true
