@@ -26,8 +26,8 @@ eureka:
       instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
       statusPageUrlPath: ${management.context-path}/info
       healthCheckUrlPath: ${management.context-path}/health
-      statusPageUrl: http://${eureka.hostname}:${server.port}/info
-      healthCheckUrl: http://${eureka.hostname}:${server.port}/health
+      statusPageUrl: http://${eureka.hostname}:${server.port}/admin/info
+      healthCheckUrl: http://${eureka.hostname}:${server.port}/admin/health
       homePageUrl: http://${eureka.hostname}:${server.port}/
     client:
       serviceUrl:
