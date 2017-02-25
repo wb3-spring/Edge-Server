@@ -3,7 +3,6 @@ info:
 server:
   port: 3003
 management:
-  context_path: /admin
   security:
     enabled: false
 zuul:
@@ -21,29 +20,16 @@ zuul:
     health:
       sensitive: false
 eureka:
-    hostname: 10.0.1.101
     instance:
       instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-      statusPageUrlPath: ${management.context-path}/info
-      healthCheckUrlPath: ${management.context-path}/health
-      statusPageUrl: http://${eureka.hostname}:${server.port}/admin/info
-      healthCheckUrl: http://${eureka.hostname}:${server.port}/admin/health
-      homePageUrl: http://${eureka.hostname}:${server.port}/
     client:
       serviceUrl:
-        defaultZone: http://10.0.1.101:3002/eureka/
+        defaultZone: http://msdiscovery:3002/eureka/
       healthcheck:
         enabled: true
       registerWithEureka: true
       fetchRegistry: true
       registry-fetch-interval-seconds: 5
-spring:
-  cloud:
-    consul:
-      discovery:
-        instanceId: ${eureka.instance.instanceId}
-        healthCheckPath: ${eureka.instance.healthCheckUrlPath}
-        tags: Zuul
 logging:
   level:
     ROOT: INFO

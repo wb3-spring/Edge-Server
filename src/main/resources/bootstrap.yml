@@ -5,9 +5,4 @@ spring:
     active: default
   cloud:
     config:
-      uri: http://10.0.1.101:3000
-    consul:
-      host: 10.0.1.101
-      port: 3001
-      config:
-        enabled: true
+      uri: http://msconfig:3000
